@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fontshare — Cabinet Grotesk (headings) + IBM Plex Sans (body via Google Fonts) */
+@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --brand-graphite: #1a1a1a;
+  --brand-graphite-2: #2b2b2b;
+  --brand-amber: #f5b800;
+  --brand-amber-hover: #e5a500;
+  --brand-body: #f8f9fa;
+  --brand-ink: #09090b;
+  --brand-muted: #52525b;
+  --brand-border: #e4e4e7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--brand-body);
+  color: var(--brand-ink);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: "Cabinet Grotesk", "IBM Plex Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--brand-amber);
+  color: #000;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 6% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 10%;
+    --primary: 45 100% 48%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 240 4% 34%;
+    --accent: 45 100% 48%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 45 100% 48%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* Utilities */
+.container-x { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+/* Hero gradient overlay */
+.hero-gradient {
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(245, 184, 0, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 90% 90%, rgba(245, 184, 0, 0.06), transparent 60%),
+    linear-gradient(180deg, #101010 0%, #1a1a1a 40%, #222 100%);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.noise-overlay::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.25'/></svg>");
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 bg-[#F5B800] text-black font-semibold px-6 py-3 rounded-md shadow-sm hover:bg-[#E5A500] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200;
+}
+.btn-outline {
+  @apply inline-flex items-center gap-2 bg-transparent border border-white/40 text-white font-semibold px-6 py-3 rounded-md hover:bg-white/10 hover:border-white transition-all duration-200;
+}
+.btn-outline-dark {
+  @apply inline-flex items-center gap-2 bg-transparent border border-zinc-900/20 text-zinc-900 font-semibold px-6 py-3 rounded-md hover:bg-zinc-900 hover:text-white transition-all duration-200;
+}
+
+/* Section headers */
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#F5B800];
+}
+.eyebrow::before {
+  content: ""; display: inline-block; width: 24px; height: 2px; background: #F5B800;
+}
+
+/* Card */
+.card-industrial {
+  @apply bg-white border border-zinc-200 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-[#F5B800]/60;
+}
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(16px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* WhatsApp float pulse */
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+}
+.wa-pulse { animation: wa-pulse 2.2s infinite; }
+
+/* Preloader */
+@keyframes spinbar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 30s linear infinite; }
+
+/* Scroll indicator */
+@keyframes scrollDot {
+  0% { transform: translateY(0); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
