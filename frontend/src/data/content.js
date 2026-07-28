@@ -7,6 +7,8 @@ export const BRAND = {
   whatsappNumber: "5511959824138",
   whatsappUrl: "https://wa.me/5511959824138",
   whatsappDisplay: "(11) 95982-4138",
+  phone: "(11) 5664-0294",
+  phoneUrl: "tel:+551156640294",
   email: "contato@absolutafixadores.com.br",
   address: "Endereço a ser divulgado — São Paulo/SP",
   logoUrl:
